@@ -15,7 +15,8 @@ builder.Services.ConfigLoggerService();
 builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddAutoMapper(typeof(Program));
 
-builder.Services.AddTransient<CompanyService>();
+builder.Services.AddScoped<CompanyService>();
+builder.Services.AddScoped<EmployeeService>();
 
 LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 

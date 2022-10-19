@@ -16,6 +16,11 @@ public class AppDbContext : DbContext
         modelBuilder.HasPostgresExtension("uuid-ossp");
         modelBuilder.ApplyConfiguration(new CompanyConfiguration());
         modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
+
+        modelBuilder.Entity<Employee>(b =>
+        {
+            b.HasOne("Entities.Models.Company", "Company").WithMany("Employees").HasForeignKey("CompanyId").OnDelete(DeleteBehavior.Cascade);
+        });
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
